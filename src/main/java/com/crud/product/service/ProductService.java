@@ -31,7 +31,6 @@ public class ProductService {
         Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id : " +id+ " Not Found"));
 
         return new ProductDTO(product);
-
     }
 
     public ProductDTO create(ProductDTO productDTO) {
@@ -44,7 +43,7 @@ public class ProductService {
 
     public ProductDTO update (Long id , ProductDTO productDTO) {
 
-            Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id" +id+ " Not Found "));
+            Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id " +id+ " Not Found "));
 
             product.setName(productDTO.getName());
             product.setPrice(productDTO.getPrice());
