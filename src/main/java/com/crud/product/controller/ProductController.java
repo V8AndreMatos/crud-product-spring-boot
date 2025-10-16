@@ -4,6 +4,7 @@ import com.crud.product.dto.ProductDTO;
 import com.crud.product.entity.Product;
 import com.crud.product.service.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,7 +57,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete product by ID", description = "Returns a product deleted by its ID")
-     public ResponseEntity<void> delete(@PathVariable Long id){
+     public ResponseEntity<Void> delete(@PathVariable Long id){
 
          productService.delete(id);
 
