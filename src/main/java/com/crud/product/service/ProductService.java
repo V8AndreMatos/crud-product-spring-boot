@@ -4,6 +4,7 @@ import com.crud.product.dto.ProductDTO;
 import com.crud.product.entity.Product;
 import com.crud.product.repository.ProductRepository;
 import com.crud.product.exception.ResourceNotFoundException;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
@@ -22,12 +23,21 @@ public class ProductService {
 
         return productRepository.findAll().stream()
                 .map(ProductDTO::new)
-                .collect(Collectors.toList())
+                .collect(Collectors.toList());
+    }
+
+    public ProductDTO findById (Long id) {
+
+        Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id : " +id+ " Not Found"));
+
+        return new ProductDTO(product);
+
     }
 
     public ProductDTO create(ProductDTO productDTO) {
 
-        Product product = productRepository.save(productDTO);
+        Product product = productRepository.save(productDTO.toEntity());
+
         return new ProductDTO(product);
 
     }

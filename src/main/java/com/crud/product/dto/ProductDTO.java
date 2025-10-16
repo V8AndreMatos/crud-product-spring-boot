@@ -2,9 +2,7 @@ package com.crud.product.dto;
 
 import com.crud.product.entity.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 
 @Schema(description = "Object representing a product")
 public class ProductDTO {
@@ -18,6 +16,8 @@ public class ProductDTO {
         @Schema(description = "Price of the product", example = "77.90")
         @Min(value = 1 , message = "price must be more than 1.00")
         @Max(value = 10000, message = "Price must be realistic")
+        @DecimalMin(value = "1.00", message = "Price must be more than 1.00")
+        @DecimalMax(value = "10000.00", message = "Price must be realistic")
         private Double price;
 
         @Schema(description = "Quantity of the product", example = "10")
