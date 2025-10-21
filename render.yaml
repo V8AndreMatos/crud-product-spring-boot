@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: crud-spring-product
+    env: docker
+    plan: free
+    region: oregon
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://mysql-db:3306/spring_product_crud_db
+      - key: SPRING_DATASOURCE_USERNAME
+        value: root
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: dodgedart79

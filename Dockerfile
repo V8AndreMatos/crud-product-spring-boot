@@ -1,5 +1,5 @@
 # Etapa 1: Build com Maven e JDK 21
-FROM maven:3.9.4-openjdk-21 AS build
+FROM maven:3.9.4-eclipse-temurin-21 AS build
 
 # Define diretório de trabalho
 WORKDIR /app
@@ -28,7 +28,7 @@ COPY --from=build /app/target/*.jar app.jar
 
 # Variáveis de ambiente
 ENV PORT=8080
-ENV DB_URL=jdbc:mysql://localhost:3306/spring_product_crud_db
+ENV DB_URL=jdbc:mysql://mysql-db:3306/spring_product_crud_db
 ENV DB_USER=root
 ENV DB_PASS=dodgedart79
 

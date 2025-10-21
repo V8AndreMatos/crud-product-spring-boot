@@ -2,6 +2,9 @@ package com.crud.product.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_products")
@@ -14,12 +17,16 @@ public class Product {
     private Long id;
 
     @Schema(description = "User full name", example = "André Matos")
+    @NotBlank(message = "Name is required")
     private String name;
 
     @Schema(description = "Price of the product", example = "77.90")
+    @NotNull(message = "Price is required")
     private Double price;
 
     @Schema(description = "Quantity of the product", example = "10")
+    @NotNull(message = "Quantity is required")
+    @Min(value = 0, message = "Quantity must be zero or more")
     private Integer quantity;
 
     public Product() {
