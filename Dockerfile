@@ -27,7 +27,7 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 # Variáveis de ambiente
-ENV PORT=8080
+ENV PORT=8081
 ENV DB_URL=jdbc:mysql://mysql-db:3306/spring_product_crud_db
 ENV DB_USER=root
 ENV DB_PASS=dodgedart79

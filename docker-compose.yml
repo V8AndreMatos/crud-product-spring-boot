@@ -6,7 +6,7 @@ services:
     container_name: mysql-db
     restart: always
     ports:
-      - "3308:3306"
+      - "3309:3306"
     environment:
       MYSQL_ROOT_PASSWORD: dodgedart79
       MYSQL_DATABASE: spring_product_crud_db
@@ -19,12 +19,11 @@ services:
     depends_on:
       - mysql-db
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
-      PORT: 8080
-      DB_URL: jdbc:mysql://mysql-db:3306/spring_product_crud_db
-      DB_USER: root
-      DB_PASS: dodgedart79
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/spring_product_crud_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: dodgedart79
 
 volumes:
   mysql-data:

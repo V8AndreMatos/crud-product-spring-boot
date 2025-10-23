@@ -15,7 +15,7 @@ jobs:
       - name: Configurar JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Build com Maven
@@ -32,3 +32,19 @@ jobs:
 
       - name: Push da imagem
         run: docker push ${{ secrets.DOCKER_USERNAME }}/spring-api:latest
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASS }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/spring-api:latest
+            docker stop spring-api || true
+            docker rm spring-api || true
+            docker run -d --name spring-api -p 8081:8081 \
+              -e SPRING_DATASOURCE_URL=jdbc:mysql://host-do-banco/db \
+              -e SPRING_DATASOURCE_USERNAME=root \
+              -e SPRING_DATASOURCE_PASSWORD=dodgedart79 \
+              ${{ secrets.DOCKER_USERNAME }}/spring-api:latest

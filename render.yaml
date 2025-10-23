@@ -8,8 +8,9 @@ services:
     startCommand: ""
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:mysql://mysql-db:3306/spring_product_crud_db
+        value: jdbc:mysql://containers.railway.app:1234/spring_product_crud_db
       - key: SPRING_DATASOURCE_USERNAME
         value: root
       - key: SPRING_DATASOURCE_PASSWORD
         value: dodgedart79
+
