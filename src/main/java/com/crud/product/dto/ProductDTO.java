@@ -9,20 +9,19 @@ public class ProductDTO {
 
         @Schema(description = "ID of the product", example = "1")
         private Long id;
-        @NotBlank(message = "Name is required")
+
+        @NotBlank(message = "{product.name.required}")
         @Schema(description = "Name of the product", example = "Notebook Dell Inspiron")
         private String name;
 
+        @DecimalMin(value = "1.00", message = "{product.price.min}")
+        @DecimalMax(value = "10000.00", message = "{product.price.max}")
         @Schema(description = "Price of the product", example = "77.90")
-        @Min(value = 1 , message = "price must be more than 1.00")
-        @Max(value = 10000, message = "Price must be realistic")
-        @DecimalMin(value = "1.00", message = "Price must be more than 1.00")
-        @DecimalMax(value = "10000.00", message = "Price must be realistic")
         private Double price;
 
+        @Min(value = 0, message = "{product.quantity.min}")
+        @Max(value = 1000, message = "{product.quantity.max}")
         @Schema(description = "Quantity of the product", example = "10")
-        @Min(value = 0 , message = "quantity can't be less than zero")
-        @Max(value = 1000, message = "Quantity must be realistic")
         private Integer quantity;
 
     public ProductDTO() {
